@@ -21,3 +21,20 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 <p>Projenin properties bölümü açılır ve Buil sekmesinden XML documentation file alanı seçilir.</p>
 
 <p>Böylece, swagger entegrasyonunu tamamlamış oluruz.<p>
+
+<h3>Swagger ı özelleştirmek (versiyon yazan kişinin iletişim bilgileri vs.) için;</h3>
+<p>ConfigureServices metodundaki <span class="badge badge-danger">services.AddSwaggerDocument();</span> kod güncellenir. </p>
+<code>
+            services.AddSwaggerDocument(config => {
+
+                config.PostProcess = (doc => {
+                    doc.Info.Title = "All Hotels Api";
+                    doc.Info.Version = "1.0.13";
+                    doc.Info.Contact = new NSwag.OpenApiContact()
+                    {
+                        Name = "Fatma Seda Özyurt",
+                        Url = "https://github.com/FatmaSedaOZYURT"
+                    };
+                });
+            });
+            </code>
