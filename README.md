@@ -37,4 +37,4 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
                     };
                 });
             });
-            </code>
+</code>
