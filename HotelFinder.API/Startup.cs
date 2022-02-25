@@ -23,7 +23,18 @@ namespace HotelFinder.API
             services.AddControllers();
             services.AddSingleton<IHotelService, HotelManager>();
             services.AddSingleton<IHotelRepository, HotelRepository>();
-            services.AddSwaggerDocument();
+            services.AddSwaggerDocument(config => {
+
+                config.PostProcess = (doc => {
+                    doc.Info.Title = "All Hotels Api";
+                    doc.Info.Version = "1.0.13";
+                    doc.Info.Contact = new NSwag.OpenApiContact()
+                    {
+                        Name = "Fatma Seda Özyurt",
+                        Url = "https://github.com/FatmaSedaOZYURT"
+                    };
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
