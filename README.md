@@ -8,7 +8,7 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 
 <h1>🚀 Swagger Entegrasyonu</h1>
 <h3>1. Startup.cs sınıfında eklemeler yapılmalıdır.</h3>
-<p>Öncelikle ConfigureServices metoduna swagger dokümanını eklememiz gerekmekte. Bunun için; <span class="badge badge-danger">services.AddSwaggerDocument();</span> kodunu ekleriz.</p>
+<p>Öncelikle ConfigureServices metoduna swagger dokümanını eklememiz gerekmekte. Bunun için; <code>services.AddSwaggerDocument();</code> kodunu ekleriz.</p>
 <h3>2. Sonrasında Configure metoduna şu kod parçalarının eklenmesi gerekmekte:</h3>
 <code>
             //Eskiden useswagger dı ama useOpenApi kulllanılmalı.
@@ -23,7 +23,7 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 <p>Böylece, swagger entegrasyonunu tamamlamış oluruz.<p>
 
 <h3>Swagger ı özelleştirmek (versiyon yazan kişinin iletişim bilgileri vs.) için;</h3>
-<p>ConfigureServices metodundaki <span class="badge badge-danger">services.AddSwaggerDocument();</span> kod güncellenir. </p>
+<p>ConfigureServices metodundaki  <code>services.AddSwaggerDocument();</code> kod güncellenir. </p>
 <code>
             services.AddSwaggerDocument(config => {
 
