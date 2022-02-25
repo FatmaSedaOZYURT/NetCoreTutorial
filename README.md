@@ -40,6 +40,7 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 </code>
 
 <h1>Async X Sync</h1>
+⭐ Async kod yazmak işlemin daha hızlı çalışacağını değil daha optimize çalışacağını belirtir. Yani thread'in, yaptığı işlem devam ederken bu işin bitmesini beklemez başka işlere bakar ve bu işlem bittiğinde boşta olan herhangi bir thread işlemin sonlanmasına yardımcı olabilir. Burada, kaynak kullanımını azaltmış oluyoruz. İşlemin hızlı sonuçlanmasını değil!
 <h3>1. CPU Tabanlı(use sync)</h3>
 <p>Complex Calculates</p>
 <p>Processing data in RAM</p>
