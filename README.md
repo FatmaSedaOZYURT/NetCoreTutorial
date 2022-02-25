@@ -22,7 +22,7 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 
 <p>Böylece, swagger entegrasyonunu tamamlamış oluruz.<p>
 
-<h3>4. Swagger ı özelleştirmek (versiyon yazan kişinin iletişim bilgileri vs.) için;</h3>
+<h3>4. Swagger ı özelleştirmek (versiyon, yazan kişinin iletişim bilgileri vs.) için;</h3>
 <p>ConfigureServices metodundaki  <code>services.AddSwaggerDocument();</code> kod güncellenir. </p>
 <code>
             services.AddSwaggerDocument(config => {
