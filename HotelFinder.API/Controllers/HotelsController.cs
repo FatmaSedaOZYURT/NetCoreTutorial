@@ -36,9 +36,9 @@ namespace HotelFinder.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]/{id}")]
-        public IActionResult GetHotelByID(int id)
+        public Task<IActionResult> GetHotelByID(int id)
         {
-            Hotel hotel = _hotelServices.GetHotelByID(id);
+            Hotel hotel = await _hotelServices.GetHotelByID(id);
             if (hotel != null)
             {
                 return Ok(hotel);
@@ -52,9 +52,9 @@ namespace HotelFinder.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]/{name}")]
-        public IActionResult GetHotelByName(string name)
+        public async Task<IActionResult> GetHotelByName(string name)
         {
-            List<Hotel> hotels = _hotelServices.GetHotelByName(name);
+            List<Hotel> hotels = await _hotelServices.GetHotelByName(name);
             if (hotels?.Count > 0)
             {
                 return Ok(hotels);
@@ -64,15 +64,15 @@ namespace HotelFinder.API.Controllers
 
         [HttpGet]
         [Route("[action]/{id}/{name}")]//bunun erine Url den almak daha doğru olacaktır.
-        public IActionResult GetHotelByIdAndName(int id, string name)
+        public async Task<IActionResult> GetHotelByIdAndName(int id, string name)
         {
             return Ok();
         }
         [HttpPost]
-        public IActionResult Post([FromBody] Hotel hotel)
+        public async Task<IActionResult> Post([FromBody] Hotel hotel)
         {
 
-            Hotel hotelNew = _hotelServices.CreateHotel(hotel);
+            Hotel hotelNew = await _hotelServices.CreateHotel(hotel);
             return CreatedAtAction("Get", new { id = hotelNew.Id }, hotelNew);// Burada, header da Location alanında eklenen datanın get metoduyla çağırılacağı endpoint paylaşılır.
 
             #region sınıfın başında [ApiController] attribute u olduğu için bunu kullanmamıza gerek yok.
@@ -85,7 +85,7 @@ namespace HotelFinder.API.Controllers
             #endregion
         }
         [HttpPut]
-        public IActionResult Put([FromBody] Hotel hotel)
+        public async Task<IActionResult> Put([FromBody] Hotel hotel)
         {
             if (_hotelServices.GetHotelByID(hotel.Id) != null)
             {
@@ -94,11 +94,11 @@ namespace HotelFinder.API.Controllers
             return NotFound();
         }
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (_hotelServices.GetHotelByID(id) != null)
             {
-                _hotelServices.DeleteHotel(id);
+                await _hotelServices.DeleteHotel(id);
                 return Ok();
             }
             return NotFound();

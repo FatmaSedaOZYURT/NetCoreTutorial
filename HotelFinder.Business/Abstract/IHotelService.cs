@@ -14,6 +14,6 @@ namespace HotelFinder.Business.Abstract
         Task<List<Hotel>> GetHotelByName(string name);
         Task<Hotel> CreateHotel(Hotel hotel);
         Task<Hotel> UpdateHotel(Hotel hotel);
-        void DeleteHotel(int id);
+        Task DeleteHotel(int id);
     }
 }
