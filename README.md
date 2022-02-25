@@ -43,6 +43,6 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 <h3>1. CPU Tabanlı(use sync)</h3>
 <p>Complex Calculates</p>
 <p>Processing data in RAM</p>
-<h3>I/O Based (use async)</h3>
+<h3>2. I/O Based (use async)</h3>
 <p>HTTP Requests</p>
 <p>Database Operations</p>
