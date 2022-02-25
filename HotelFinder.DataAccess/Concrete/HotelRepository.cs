@@ -1,5 +1,6 @@
 ﻿using HotelFinder.DataAccess.Abstract;
 using HotelFinder.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,59 +11,59 @@ namespace HotelFinder.DataAccess.Concrete
 {
     public class HotelRepository : IHotelRepository
     {
-        public Hotel CreateHotel(Hotel hotel)
+        public async Task<Hotel> CreateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
                 hotelDbContext.Hotels.Add(hotel);
-                hotelDbContext.SaveChanges();
+                await hotelDbContext.SaveChangesAsync();
                 return hotel;
             }
         }
 
-        public void DeleteHotel(int id)
+        public async Task DeleteHotel(int id)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                Hotel hotel = GetHotelById(id);
+                var hotel = await GetHotelById(id);
                 if (hotel != null)
                 {
                     hotelDbContext.Hotels.Remove(hotel);
-                    hotelDbContext.SaveChanges();
+                    await hotelDbContext.SaveChangesAsync();
                 }
             }
         }
 
-        public List<Hotel> GetAllHotels()
+        public async Task<List<Hotel>> GetAllHotels()
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.ToList();
+                return await hotelDbContext.Hotels.ToListAsync();
             }
         }
 
-        public Hotel GetHotelById(int id)
+        public async Task<Hotel> GetHotelById(int id)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.Find(id);
+                return await hotelDbContext.Hotels.FindAsync(id);
             }
         }
 
-        public List<Hotel> GetHotelByName(string name)
+        public async Task<List<Hotel>> GetHotelByName(string name)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
-                return hotelDbContext.Hotels.Where(a => a.Name.Contains(name.Trim(' '))).ToList();
+                return await hotelDbContext.Hotels.Where(a => a.Name.Contains(name.Trim(' '))).ToListAsync();
             }
         }
 
-        public Hotel UpdateHotel(Hotel hotel)
+        public async Task<Hotel> UpdateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())
             {
                 hotelDbContext.Update(hotel);
-                hotelDbContext.SaveChanges();
+                await hotelDbContext.SaveChangesAsync();
                 return hotel;
             }
         }
