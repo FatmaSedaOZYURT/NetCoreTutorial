@@ -19,12 +19,20 @@ namespace HotelFinder.API.Controllers
         {
             _hotelServices = hotelServices;
         }
-
+        /// <summary>
+        /// Get All Hotels
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public List<Hotel> Get()
         {
             return _hotelServices.GetAllHotels();
         }
+        /// <summary>
+        /// Get Hotel By Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
         public Hotel Get(int id)
         {

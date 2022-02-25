@@ -1,4 +1,4 @@
-using HotelFinder.Business.Abstract;
+﻿using HotelFinder.Business.Abstract;
 using HotelFinder.Business.Concrete;
 using HotelFinder.DataAccess.Abstract;
 using HotelFinder.DataAccess.Concrete;
@@ -23,6 +23,7 @@ namespace HotelFinder.API
             services.AddControllers();
             services.AddSingleton<IHotelService, HotelManager>();
             services.AddSingleton<IHotelRepository, HotelRepository>();
+            services.AddSwaggerDocument();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +35,13 @@ namespace HotelFinder.API
             }
 
             app.UseRouting();
+
+            #region Swagger Entegrasyonu
+            //Eskiden useswagger dı ama useOpenApi kulllanılmalı.
+            //app.UseSwagger();
+            app.UseOpenApi();
+            app.UseSwaggerUi3(); 
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {
