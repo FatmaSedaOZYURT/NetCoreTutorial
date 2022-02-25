@@ -49,6 +49,14 @@ namespace HotelFinder.DataAccess.Concrete
             }
         }
 
+        public List<Hotel> GetHotelByName(string name)
+        {
+            using (var hotelDbContext = new HotelDbContext())
+            {
+                return hotelDbContext.Hotels.Where(a => a.Name.Contains(name.Trim(' '))).ToList();
+            }
+        }
+
         public Hotel UpdateHotel(Hotel hotel)
         {
             using (var hotelDbContext = new HotelDbContext())

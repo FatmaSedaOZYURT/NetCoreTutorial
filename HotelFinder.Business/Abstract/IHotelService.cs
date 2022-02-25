@@ -11,6 +11,7 @@ namespace HotelFinder.Business.Abstract
     {
         List<Hotel> GetAllHotels();
         Hotel GetHotelByID(int id);
+        List<Hotel> GetHotelByName(string name);
         Hotel CreateHotel(Hotel hotel);
         Hotel UpdateHotel(Hotel hotel);
         void DeleteHotel(int id);

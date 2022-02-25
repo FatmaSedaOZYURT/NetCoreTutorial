@@ -24,34 +24,84 @@ namespace HotelFinder.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public List<Hotel> Get()
+        public IActionResult Get()
         {
-            return _hotelServices.GetAllHotels();
+            List<Hotel> hotels = _hotelServices.GetAllHotels();
+            return Ok(hotels);
         }
         /// <summary>
         /// Get Hotel By Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [HttpGet("{id}")]
-        public Hotel Get(int id)
+        [HttpGet]
+        [Route("[action]/{id}")]
+        public IActionResult GetHotelByID(int id)
         {
-            return _hotelServices.GetHotelByID(id);
+            Hotel hotel = _hotelServices.GetHotelByID(id);
+            if (hotel != null)
+            {
+                return Ok(hotel);
+            }
+            return NotFound();
+        }
+        /// <summary>
+        /// Get Hotel By Name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("[action]/{name}")]
+        public IActionResult GetHotelByName(string name)
+        {
+            List<Hotel> hotels = _hotelServices.GetHotelByName(name);
+            if (hotels?.Count > 0)
+            {
+                return Ok(hotels);
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("[action]/{id}/{name}")]//bunun erine Url den almak daha doğru olacaktır.
+        public IActionResult GetHotelByIdAndName(int id, string name)
+        {
+            return Ok();
         }
         [HttpPost]
-        public Hotel Post([FromBody]Hotel hotel)
+        public IActionResult Post([FromBody] Hotel hotel)
         {
-            return _hotelServices.CreateHotel(hotel);
+
+            Hotel hotelNew = _hotelServices.CreateHotel(hotel);
+            return CreatedAtAction("Get", new { id = hotelNew.Id }, hotelNew);// Burada, header da Location alanında eklenen datanın get metoduyla çağırılacağı endpoint paylaşılır.
+
+            #region sınıfın başında [ApiController] attribute u olduğu için bunu kullanmamıza gerek yok.
+            //if (ModelState.IsValid)
+            //{
+            //    Hotel hotelNew = _hotelServices.CreateHotel(hotel);
+            //    return CreatedAtAction("Get", new { id = hotelNew.Id }, hotelNew);// Burada, header da Location alanında eklenen datanın get metoduyla çağırılacağı endpoint paylaşılır.
+            //}
+            //return BadRequest(ModelState); // 400 + validation errors 
+            #endregion
         }
         [HttpPut]
-        public Hotel Put([FromBody]Hotel hotel)
+        public IActionResult Put([FromBody] Hotel hotel)
         {
-            return _hotelServices.UpdateHotel(hotel);
+            if (_hotelServices.GetHotelByID(hotel.Id) != null)
+            {
+                return Ok(_hotelServices.UpdateHotel(hotel));
+            }
+            return NotFound();
         }
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            _hotelServices.DeleteHotel(id);
+            if (_hotelServices.GetHotelByID(id) != null)
+            {
+                _hotelServices.DeleteHotel(id);
+                return Ok();
+            }
+            return NotFound();
         }
     }
 }
