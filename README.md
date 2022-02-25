@@ -38,3 +38,5 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
                 });
             });
 </code>
+
+<h1>Async <i class="fa-solid fa-swords"></i> Sync</h1>
