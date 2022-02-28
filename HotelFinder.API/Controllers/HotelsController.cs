@@ -36,7 +36,7 @@ namespace HotelFinder.API.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("[action]/{id}")]
-        public Task<IActionResult> GetHotelByID(int id)
+        public async Task<IActionResult> GetHotelByID(int id)
         {
             Hotel hotel = await _hotelServices.GetHotelByID(id);
             if (hotel != null)
