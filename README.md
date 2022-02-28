@@ -47,3 +47,6 @@ Bogus ile CRUD işlemlerinin yapıldığı proje için <a href="https://github.c
 <h3>2. I/O Based (use async)</h3>
 <p>HTTP Requests</p>
 <p>Database Operations</p>
+
+
+Kaynak: <a href='https://github.com/kenanyildirim'>Kenan Yıldırım'ın</a> derslerinden edindiğim bilgidir.
